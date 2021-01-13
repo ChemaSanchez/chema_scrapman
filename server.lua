@@ -87,9 +87,32 @@ AddEventHandler('chema_scrapmancraft:skup2', function()
         TriggerClientEvent('chema_scrapman:propa', _source)
         TriggerClientEvent('esx:showHelpNotification', _source, 'Ganaste ~y~' .. ESX.Math.Round(jabka) ..'~w~€')
     else
-        TriggerClientEvent('esx:showHelpNotification', _source, '~y~Nie posiadasz złomu')
+        TriggerClientEvent('esx:showHelpNotification', _source, '~y~No tienes nada que ofrecer')
     end
 else
-    TriggerClientEvent('esx:showHelpNotification', source, '~y~Nie jestes złomiarzem!')
+    TriggerClientEvent('esx:showHelpNotification', source, '~y~No eres chatarrero!')
 end 
+end)
+
+local CurrentVersion = '1.0'
+
+PerformHttpRequest('https://raw.githubusercontent.com/ChemaSanchez/chema_scrapman/main/Version.txt', function(Error, NewestVersion, Header)
+    PerformHttpRequest('https://raw.githubusercontent.com/ChemaSanchez/chema_scrapman/main/Version.txt', function(Error, Changes, Header)
+        print('^0')
+        print('^6[chema_scrapman]^0 Comprobando actualizaciones...')
+        print('^0')
+        print('^6[chema_scrapman]^0 Version: ^5' .. CurrentVersion .. '^0')
+        print('^0')
+        if CurrentVersion ~= NewestVersion then
+            print('^6[chema_scrapman]^0 Your script is ^8outdated^0!')
+            print('^0')
+            print('^6[chema_scrapman] ^3Nueva Version ^5' .. NewestVersion .. ':^0')
+            print('^3')
+            print('^0')
+            print('^6[chema_scrapman]^0 Tu ^8no tienes^0 la ultima version de ^5chema_scrapman^0. Actualizalo: https://github.com/ChemaSanchez/chema_scrapman/releases/tag/'.. NewestVersion)
+        else
+            print('^6[chema_scrapman]^0 Esta ^2actualizado^0')
+        end
+        print('^0')
+    end)
 end)
